@@ -17,13 +17,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let rootViewController = SplashScreenViewController()
-        window.rootViewController = UINavigationController(rootViewController: rootViewController)
+        let rootViewController = LoginViewController()
+        let navigation = UINavigationController(rootViewController: rootViewController)
+        window.rootViewController = navigation
         self.window = window
         window.makeKeyAndVisible()
         
-        
-        
+        let splash = SplashScreenViewController()
+        splash.modalPresentationStyle = .fullScreen
+        navigation.present(splash, animated: false, completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
