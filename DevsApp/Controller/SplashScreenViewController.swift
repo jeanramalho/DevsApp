@@ -18,6 +18,7 @@ class SplashScreenViewController: UIViewController {
     
     private func setup(){
         
+        dismissModal()
         setHierarchy()
         setConstraints()
     }
@@ -31,5 +32,12 @@ class SplashScreenViewController: UIViewController {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.setConstraintsToParent(self.view)
         
+    }
+    
+    private func dismissModal(){
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
