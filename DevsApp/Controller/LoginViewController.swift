@@ -13,7 +13,23 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
     }
     
+    private func setup(){
+        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    private func setHierarchy(){
+        
+        view.addSubview(contentView)
+    }
+    
+    private func setConstraints(){
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.setConstraintsToParent(self.view)
+    }
     
 }
