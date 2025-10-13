@@ -20,7 +20,7 @@ class SplashScreenView: UIView {
     
     private func setupUI(){
         
-        self.backgroundColor = .red
+        self.backgroundColor = Colors.bluePrimary
         
         setHierarchy()
         setConstraints()

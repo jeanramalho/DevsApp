@@ -20,7 +20,7 @@ class LoginView: UIView {
     
     private func setupUI(){
         
-        backgroundColor = .darkGray
+        backgroundColor = Colors.bgColor
         
         setHierarchy()
         setConstraints()
