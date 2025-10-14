@@ -16,11 +16,33 @@ class LoginView: UIView {
         return image
     }()
     
-    private let emailTextFiel: UITextField = {
-        let textField = UITextField()
+    private let emailTextFiel: PaddedTextField = {
+        let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Email"
+        textField.keyboardType = .emailAddress
+        textField.layer.cornerRadius = 6
         return textField
+    }()
+    
+    private let passwordTextFiel: PaddedTextField = {
+        let textField = PaddedTextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Senha"
+        textField.layer.cornerRadius = 6
+        return textField
+    }()
+    
+    private let loginButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Entrar", for: .normal)
+        button.setTitleColor(Colors.bluePrimary, for: .normal)
+        button.backgroundColor = Colors.bgColor
+        button.layer.borderColor = Colors.bluePrimary.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 6
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -42,10 +64,38 @@ class LoginView: UIView {
     
     private func setHierarchy(){
         
+        addSubview(logoDevsApp)
+        addSubview(emailTextFiel)
+        addSubview(passwordTextFiel)
+        addSubview(loginButton)
     }
     
     private func setConstraints(){
         
+        NSLayoutConstraint.activate([
+            
+            logoDevsApp.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
+            logoDevsApp.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
+            logoDevsApp.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
+            logoDevsApp.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            emailTextFiel.heightAnchor.constraint(equalToConstant: 35),
+            emailTextFiel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            emailTextFiel.topAnchor.constraint(equalTo: logoDevsApp.bottomAnchor, constant: 20),
+            emailTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            passwordTextFiel.heightAnchor.constraint(equalToConstant: 35),
+            passwordTextFiel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            passwordTextFiel.topAnchor.constraint(equalTo: emailTextFiel.bottomAnchor, constant: 15),
+            passwordTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            loginButton.heightAnchor.constraint(equalToConstant: 40),
+            loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
+            loginButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+            
+            
+        ])
     }
         
 }
