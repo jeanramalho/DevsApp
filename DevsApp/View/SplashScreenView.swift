@@ -9,6 +9,13 @@ import UIKit
 
 class SplashScreenView: UIView {
     
+    private let logoDevsApp: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "DevsApp Complete Logo")
+        return image
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -20,7 +27,7 @@ class SplashScreenView: UIView {
     
     private func setupUI(){
         
-        self.backgroundColor = Colors.bluePrimary
+        self.backgroundColor = Colors.bgColor
         
         setHierarchy()
         setConstraints()
@@ -28,9 +35,15 @@ class SplashScreenView: UIView {
     
     private func setHierarchy(){
         
+        addSubview(logoDevsApp)
     }
     
     private func setConstraints(){
-        
+        NSLayoutConstraint.activate([
+            
+            logoDevsApp.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            logoDevsApp.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            logoDevsApp.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
     }
 }
