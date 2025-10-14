@@ -22,6 +22,8 @@ class LoginView: UIView {
         textField.placeholder = "Email"
         textField.keyboardType = .emailAddress
         textField.layer.cornerRadius = 6
+        textField.backgroundColor = .white
+        textField.textColor = Colors.bluePrimary
         return textField
     }()
     
@@ -30,6 +32,8 @@ class LoginView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Senha"
         textField.layer.cornerRadius = 6
+        textField.backgroundColor = .white
+        textField.textColor = Colors.bluePrimary
         return textField
     }()
     
@@ -74,23 +78,23 @@ class LoginView: UIView {
         
         NSLayoutConstraint.activate([
             
-            logoDevsApp.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
-            logoDevsApp.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
+            logoDevsApp.heightAnchor.constraint(equalToConstant: 200),
+            logoDevsApp.widthAnchor.constraint(equalToConstant: 230),
             logoDevsApp.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
             logoDevsApp.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             emailTextFiel.heightAnchor.constraint(equalToConstant: 35),
-            emailTextFiel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            emailTextFiel.widthAnchor.constraint(equalToConstant: 300),
             emailTextFiel.topAnchor.constraint(equalTo: logoDevsApp.bottomAnchor, constant: 20),
             emailTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             passwordTextFiel.heightAnchor.constraint(equalToConstant: 35),
-            passwordTextFiel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            passwordTextFiel.widthAnchor.constraint(equalToConstant: 300),
             passwordTextFiel.topAnchor.constraint(equalTo: emailTextFiel.bottomAnchor, constant: 15),
             passwordTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             loginButton.heightAnchor.constraint(equalToConstant: 40),
-            loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            loginButton.widthAnchor.constraint(equalToConstant: 260),
             loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: centerXAnchor)
             
