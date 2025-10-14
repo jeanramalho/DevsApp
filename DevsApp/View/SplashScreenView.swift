@@ -42,7 +42,7 @@ class SplashScreenView: UIView {
         NSLayoutConstraint.activate([
             
             logoDevsApp.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6),
-            logoDevsApp.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
+            logoDevsApp.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25),
             logoDevsApp.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             logoDevsApp.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])

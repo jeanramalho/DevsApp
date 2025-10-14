@@ -9,6 +9,20 @@ import UIKit
 
 class LoginView: UIView {
     
+    private let logoDevsApp: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "DevsApp Complete Logo")
+        return image
+    }()
+    
+    private let emailTextFiel: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Email"
+        return textField
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
