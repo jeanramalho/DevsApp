@@ -49,6 +49,13 @@ class LoginView: UIView {
         return button
     }()
     
+    private let signUpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Caso não tenha cadastro, CADASTRE-SE"
+        label.textColor = .white
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -72,6 +79,7 @@ class LoginView: UIView {
         addSubview(emailTextFiel)
         addSubview(passwordTextFiel)
         addSubview(loginButton)
+        addSubview(signUpLabel)
     }
     
     private func setConstraints(){
@@ -96,7 +104,9 @@ class LoginView: UIView {
             loginButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.widthAnchor.constraint(equalToConstant: 260),
             loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
-            loginButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+            loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            
             
             
         ])
