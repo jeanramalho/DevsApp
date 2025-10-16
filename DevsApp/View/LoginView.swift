@@ -106,7 +106,8 @@ class LoginView: UIView {
             loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            
+            signUpLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            signUpLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15)
             
             
         ])
