@@ -37,7 +37,7 @@ class SignUpView: UIView {
         return textField
     }()
     
-    private let singUpButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Cadastrar", for: .normal)
@@ -50,9 +50,57 @@ class SignUpView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI(){
+        
+        backgroundColor = Colors.bgColor
+        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    private func setHierarchy(){
+        
+        addSubview(nameTextField)
+        addSubview(emailTextField)
+        addSubview(passwordTextField)
+        addSubview(confirmPasswordTextField)
+        addSubview(signUpButton)
+    }
+    
+    private func setConstraints(){
+        
+        NSLayoutConstraint.activate([
+            
+            // Define altura dos elementos
+            nameTextField.heightAnchor.constraint(equalToConstant: 35),
+            emailTextField.heightAnchor.constraint(equalToConstant: 35),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 35),
+            confirmPasswordTextField.heightAnchor.constraint(equalToConstant: 35),
+            signUpButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            // Define constraints dos elementos
+            nameTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
+            nameTextField.widthAnchor.constraint(equalToConstant: 300),
+            
+            emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
+            emailTextField.widthAnchor.constraint(equalToConstant: 300),
+            
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
+            passwordTextField.widthAnchor.constraint(equalToConstant: 300),
+            
+            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            confirmPasswordTextField.widthAnchor.constraint(equalToConstant: 300),
+            
+            signUpButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 30),
+            signUpButton.widthAnchor.constraint(equalToConstant: 300)
+            
+        ])
     }
 }
