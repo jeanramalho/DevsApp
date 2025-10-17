@@ -49,11 +49,11 @@ class LoginView: UIView {
         return button
     }()
     
-    private let signUpLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Caso não tenha cadastro, CADASTRE-SE"
-        label.textColor = .white
-        return label
+    lazy var signUpLabel: UIButton = {
+        let button = UIButton()
+        button.setTitle("Cadastre-se", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        return button
     }()
     
     override init(frame: CGRect) {

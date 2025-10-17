@@ -32,4 +32,17 @@ class LoginViewController: UIViewController {
         contentView.setConstraintsToParent(self.view)
     }
     
+    private func setupContentView(){
+        
+        contentView.signUpLabel.addTarget(self, action: #selector(signUpRedirect), for: .touchUpInside)
+    }
+    
+    
+    @objc private func signUpRedirect(){
+        
+        let signUpViewController = SignUpViewController()
+        
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
+    }
+    
 }
