@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     
     private func setup(){
         
+        setupContentView()
         setHierarchy()
         setConstraints()
     }
@@ -34,7 +35,7 @@ class LoginViewController: UIViewController {
     
     private func setupContentView(){
         
-        contentView.signUpLabel.addTarget(self, action: #selector(signUpRedirect), for: .touchUpInside)
+        contentView.signUpButton.addTarget(self, action: #selector(signUpRedirect), for: .touchUpInside)
     }
     
     

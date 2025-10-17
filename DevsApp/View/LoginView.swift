@@ -49,8 +49,9 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var signUpLabel: UIButton = {
+    lazy var signUpButton: UIButton = {
         let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Cadastre-se", for: .normal)
         button.setTitleColor(.white, for: .normal)
         return button
@@ -79,7 +80,7 @@ class LoginView: UIView {
         addSubview(emailTextFiel)
         addSubview(passwordTextFiel)
         addSubview(loginButton)
-        addSubview(signUpLabel)
+        addSubview(signUpButton)
     }
     
     private func setConstraints(){
@@ -106,8 +107,8 @@ class LoginView: UIView {
             loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            signUpLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            signUpLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15)
+            signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15)
             
             
         ])
