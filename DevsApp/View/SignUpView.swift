@@ -13,6 +13,9 @@ class SignUpView: UIView {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Digite seu nome..."
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.textColor = Colors.bluePrimary
         return textField
     }()
     
@@ -20,6 +23,10 @@ class SignUpView: UIView {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Digite seu email..."
+        textField.keyboardType = .emailAddress
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.textColor = Colors.bluePrimary
         return textField
     }()
     
@@ -27,6 +34,9 @@ class SignUpView: UIView {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Digite sua senha..."
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.textColor = Colors.bluePrimary
         return textField
     }()
     
@@ -34,6 +44,9 @@ class SignUpView: UIView {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Confirme sua senha..."
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 6
+        textField.textColor = Colors.bluePrimary
         return textField
     }()
     
@@ -84,6 +97,13 @@ class SignUpView: UIView {
             passwordTextField.heightAnchor.constraint(equalToConstant: 35),
             confirmPasswordTextField.heightAnchor.constraint(equalToConstant: 35),
             signUpButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            // Define alinhamento dos elementos
+            nameTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            emailTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            passwordTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            confirmPasswordTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             // Define constraints dos elementos
             nameTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
