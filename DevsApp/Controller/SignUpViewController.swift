@@ -14,4 +14,18 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    private func setup(){
+        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    private func setHierarchy(){
+        
+    }
+    
+    private func setConstraints(){
+        
+    }
 }
