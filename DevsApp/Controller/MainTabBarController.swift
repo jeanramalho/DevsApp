@@ -40,16 +40,16 @@ final class MainTabBarController: UITabBarController {
         
         let appearence = UITabBarAppearance()
         appearence.configureWithOpaqueBackground()
-        appearence.backgroundColor = .systemBackground
-        appearence.stackedLayoutAppearance.selected.iconColor = UIColor.systemGreen
-        appearence.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.systemGreen]
+        appearence.backgroundColor = Colors.bgColor
+        appearence.stackedLayoutAppearance.selected.iconColor = Colors.bluePrimary
+        appearence.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: Colors.bluePrimary]
         
         tabBar.standardAppearance = appearence
         if #available(iOS 15.0, *) {
             tabBar.scrollEdgeAppearance = appearence
         }
         
-        tabBar.isTranslucent = false
-        tabBar.tintColor = UIColor.systemGreen
+        tabBar.isTranslucent = true
+        tabBar.tintColor = Colors.bluePrimary
     }
 }
