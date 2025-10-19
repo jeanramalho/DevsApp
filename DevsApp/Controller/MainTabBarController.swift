@@ -12,6 +12,7 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        setupUIController()
     }
     
     private func setupViewController(){
@@ -33,5 +34,22 @@ final class MainTabBarController: UITabBarController {
         viewControllers = [navChats, navSettings]
         
         selectedIndex = 0
+    }
+    
+    private func setupUIController(){
+        
+        let appearence = UITabBarAppearance()
+        appearence.configureWithOpaqueBackground()
+        appearence.backgroundColor = .systemBackground
+        appearence.stackedLayoutAppearance.selected.iconColor = UIColor.systemGreen
+        appearence.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.systemGreen]
+        
+        tabBar.standardAppearance = appearence
+        if #available(iOS 15.0, *) {
+            tabBar.scrollEdgeAppearance = appearence
+        }
+        
+        tabBar.isTranslucent = false
+        tabBar.tintColor = UIColor.systemGreen
     }
 }
