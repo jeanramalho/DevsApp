@@ -36,6 +36,8 @@ class LoginViewController: UIViewController {
     private func setupContentView(){
         
         contentView.signUpButton.addTarget(self, action: #selector(signUpRedirect), for: .touchUpInside)
+        
+        contentView.loginButton.addTarget(self, action: #selector(loginToMainView), for: .touchUpInside)
     }
     
     
@@ -44,6 +46,13 @@ class LoginViewController: UIViewController {
         let signUpViewController = SignUpViewController()
         
         self.navigationController?.pushViewController(signUpViewController, animated: true)
+    }
+    
+    @objc private func loginToMainView(){
+        
+        let mainTabBarController = MainTabBarController()
+        
+        self.navigationController?.setViewControllers([mainTabBarController], animated: true)
     }
     
 }

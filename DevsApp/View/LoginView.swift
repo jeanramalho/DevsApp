@@ -37,7 +37,7 @@ class LoginView: UIView {
         return textField
     }()
     
-    private let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Entrar", for: .normal)
