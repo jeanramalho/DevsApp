@@ -9,9 +9,28 @@ import UIKit
 
 class ContactsViewController: UIViewController {
     
+    private let contentView: ContactsView = ContactsView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        setup()
+    }
+    
+    private func setup(){
+        
         title = "Contatos"
+        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    private func setHierarchy(){
+        
+        view.addSubview(contentView)
+    }
+    
+    private func setConstraints(){
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.setConstraintsToParent(self.view)
     }
 }

@@ -20,6 +20,8 @@ class SettingsView: UIView {
     
     private func setupUI(){
         
+        backgroundColor = Colors.bgColor
+        
         setHierarchy()
         setConstraints()
     }

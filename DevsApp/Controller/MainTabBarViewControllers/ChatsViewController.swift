@@ -9,9 +9,28 @@ import UIKit
 
 class ChatsViewController: UIViewController {
     
+    private let contentView: ChatsView = ChatsView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        setup()
+    }
+    
+    private func setup(){
+        
         title = "Chats"
+        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    private func setHierarchy(){
+        
+        view.addSubview(contentView)
+    }
+    
+    private func setConstraints(){
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.setConstraintsToParent(self.view)
     }
 }

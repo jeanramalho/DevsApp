@@ -20,6 +20,8 @@ class ContactsView: UIView {
     
     private func setupUI(){
         
+        backgroundColor = Colors.bgColor
+        
         setHierarchy()
         setConstraints()
     }
