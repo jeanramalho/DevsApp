@@ -18,6 +18,8 @@ class SignUpViewController: UIViewController {
     
     private func setup(){
         
+        title = "Cadastre-se"
+        
         setHierarchy()
         setConstraints()
     }
