@@ -19,9 +19,11 @@ final class MainTabBarController: UITabBarController {
         
         let chatsViewController = ChatsViewController()
         let settingsViewController = SettingsViewController()
+        let contactsViewController = ContactsViewController()
         
         let navChats = UINavigationController(rootViewController: chatsViewController)
         let navSettings = UINavigationController(rootViewController: settingsViewController)
+        let navContacts = UINavigationController(rootViewController: contactsViewController)
         
         navChats.tabBarItem = UITabBarItem(title: "Chats",
                                            image: UIImage(systemName: "bubble.left.and.bubble.right"),
@@ -31,7 +33,12 @@ final class MainTabBarController: UITabBarController {
                                               image: UIImage(systemName: "gear"),
                                               selectedImage: UIImage(systemName: "gear.fill"))
         
-        viewControllers = [navChats, navSettings]
+        navContacts.tabBarItem = UITabBarItem(title: "Contatos",
+                                              image: UIImage(systemName:"person.crop.circle"),
+                                              selectedImage: UIImage(systemName:"person.crop.circle.fill"))
+        
+        
+        viewControllers = [navChats, navContacts, navSettings]
         
         selectedIndex = 0
     }
