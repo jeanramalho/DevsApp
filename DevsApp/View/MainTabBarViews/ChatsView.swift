@@ -18,6 +18,7 @@ class ChatsView: UIView {
     lazy var chatsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = Colors.bgColor
         return tableView
     }()
     
