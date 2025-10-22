@@ -9,7 +9,11 @@ import UIKit
 
 class ContactsView: UIView {
     
-    private let headerView
+    private let headerView: HeaderView = {
+        let headerView = HeaderView(title: "Contatos")
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,9 +34,14 @@ class ContactsView: UIView {
     
     private func setHierarchy(){
         
+        addSubview(headerView)
     }
     
     private func setConstraints(){
-        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
 }

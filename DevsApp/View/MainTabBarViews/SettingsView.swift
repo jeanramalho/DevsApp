@@ -9,6 +9,12 @@ import UIKit
 
 class SettingsView: UIView {
     
+    private let headerView: HeaderView = {
+        let headerView = HeaderView(title: "Configurações")
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -28,9 +34,15 @@ class SettingsView: UIView {
     
     private func setHierarchy(){
         
+        addSubview(headerView)
     }
     
     private func setConstraints(){
         
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
 }
