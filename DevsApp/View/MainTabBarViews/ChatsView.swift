@@ -15,6 +15,12 @@ class ChatsView: UIView {
         return headerView
     }()
     
+    lazy var chatsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -35,13 +41,22 @@ class ChatsView: UIView {
     private func setHierarchy(){
         
         addSubview(headerView)
+        addSubview(chatsTableView)
     }
     
     private func setConstraints(){
         NSLayoutConstraint.activate([
+            
+            // HeaderView Contraints
             headerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            // ChatsTableView Contraints
+            chatsTableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            chatsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            chatsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            chatsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }
