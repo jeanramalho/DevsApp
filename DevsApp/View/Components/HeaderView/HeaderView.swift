@@ -44,7 +44,9 @@ class HeaderView: UIView {
     private func setConstraints(){
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18)
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18),
+            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
         ])
     }
 }

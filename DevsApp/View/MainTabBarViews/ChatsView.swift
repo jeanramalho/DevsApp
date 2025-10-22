@@ -41,8 +41,9 @@ class ChatsView: UIView {
     
     private func setHierarchy(){
         
-        addSubview(headerView)
         addSubview(chatsTableView)
+        addSubview(headerView)
+        
     }
     
     private func setConstraints(){
