@@ -7,17 +7,19 @@
 import Foundation
 import UIKit
 
-class TitleView: UIView {
+class HeaderView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
    init(title: String) {
         super.init(frame: .zero)
         setupComponent(title: title)
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -28,4 +30,20 @@ class TitleView: UIView {
         titleLabel.text = title
     }
     
+    private func setupUI(){
+        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    private func setHierarchy(){
+        self.addSubview(titleLabel)
+    }
+    
+    private func setConstraints(){
+        NSLayoutConstraint.activate([
+            titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12)
+        ])
+    }
 }
