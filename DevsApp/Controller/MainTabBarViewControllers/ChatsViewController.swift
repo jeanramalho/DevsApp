@@ -32,5 +32,7 @@ class ChatsViewController: UIViewController {
     private func setConstraints(){
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.setConstraintsToParent(self.view)
+        
+        
     }
 }

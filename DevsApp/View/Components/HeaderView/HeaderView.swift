@@ -12,7 +12,8 @@ class HeaderView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        label.textColor = .white
         return label
     }()
     
@@ -43,7 +44,7 @@ class HeaderView: UIView {
     private func setConstraints(){
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12)
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18)
         ])
     }
 }

@@ -9,6 +9,12 @@ import Foundation
 
 class ChatsView: UIView {
     
+    private let headerView: HeaderView = {
+        let headerView = HeaderView(title: "Chats")
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -28,9 +34,14 @@ class ChatsView: UIView {
     
     private func setHierarchy(){
         
+        addSubview(headerView)
     }
     
     private func setConstraints(){
-        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
 }

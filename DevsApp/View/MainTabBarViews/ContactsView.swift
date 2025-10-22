@@ -9,6 +9,8 @@ import UIKit
 
 class ContactsView: UIView {
     
+    private let headerView
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
