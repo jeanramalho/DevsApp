@@ -18,8 +18,6 @@ class ChatsViewController: UIViewController {
     
     private func setup(){
         
-        title = "Chats"
-        
         setHierarchy()
         setConstraints()
     }

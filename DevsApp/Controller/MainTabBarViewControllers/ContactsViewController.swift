@@ -18,8 +18,6 @@ class ContactsViewController: UIViewController {
     
     private func setup(){
         
-        title = "Contatos"
-        
         setHierarchy()
         setConstraints()
     }

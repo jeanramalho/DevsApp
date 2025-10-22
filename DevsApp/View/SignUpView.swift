@@ -9,6 +9,12 @@ import UIKit
 
 class SignUpView: UIView {
     
+    private let headerView: HeaderView = {
+        let headerView = HeaderView(title: "Cadastre-se")
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
+    
     private let nameTextField: PaddedTextField = {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +86,7 @@ class SignUpView: UIView {
     
     private func setHierarchy(){
         
+        addSubview(headerView)
         addSubview(nameTextField)
         addSubview(emailTextField)
         addSubview(passwordTextField)
@@ -90,6 +97,11 @@ class SignUpView: UIView {
     private func setConstraints(){
         
         NSLayoutConstraint.activate([
+            
+            //Define contraints do headerView
+            headerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 24),
+            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
             // Define altura dos elementos
             nameTextField.heightAnchor.constraint(equalToConstant: 35),
@@ -106,7 +118,7 @@ class SignUpView: UIView {
             signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             // Define constraints dos elementos
-            nameTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
+            nameTextField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 50),
             nameTextField.widthAnchor.constraint(equalToConstant: 300),
             
             emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),

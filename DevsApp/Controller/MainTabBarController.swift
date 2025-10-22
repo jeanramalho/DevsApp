@@ -13,6 +13,11 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupViewController()
         setupUIController()
+        setupTabBarConroller()
+    }
+    
+    private func setupTabBarConroller(){
+        self.view.backgroundColor = Colors.bgColor
     }
     
     private func setupViewController(){

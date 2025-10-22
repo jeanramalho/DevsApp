@@ -18,8 +18,6 @@ class SettingsViewController: UIViewController {
     
     private func setup(){
         
-        title = "Configurações"
-        
         setHierarchy()
         setConstraints()
     }
