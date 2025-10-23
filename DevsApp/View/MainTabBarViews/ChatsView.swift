@@ -9,7 +9,15 @@ import Foundation
 
 class ChatsView: UIView {
     
-    private let headerHeight: CGFloat = 110
+    public let headerHeight: CGFloat = 110
+    
+    lazy var navTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }()
     
     private let headerView: HeaderView = {
         let headerView = HeaderView(title: "Chats")
@@ -64,7 +72,7 @@ class ChatsView: UIView {
         NSLayoutConstraint.activate([
             
             // ChatsTableView Contraints
-            chatsTableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            chatsTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             chatsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             chatsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             chatsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
