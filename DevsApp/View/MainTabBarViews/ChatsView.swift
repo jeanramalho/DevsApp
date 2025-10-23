@@ -9,6 +9,8 @@ import Foundation
 
 class ChatsView: UIView {
     
+    private let headerHeight: CGFloat = 110
+    
     private let headerView: HeaderView = {
         let headerView = HeaderView(title: "Chats")
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,24 +37,31 @@ class ChatsView: UIView {
         
         backgroundColor = Colors.bgColor
         
+        configureTableHeader()
         setHierarchy()
         setConstraints()
+    }
+    
+    private func configureTableHeader() {
+        
+        // Configura dimensões do headerView
+        headerView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: headerHeight)
+        
+        // Força layout Interno do header
+        headerView.layoutIfNeeded()
+        
+        // Define tableHeaderView
+        chatsTableView.tableHeaderView = headerView
     }
     
     private func setHierarchy(){
         
         addSubview(chatsTableView)
-        addSubview(headerView)
         
     }
     
     private func setConstraints(){
         NSLayoutConstraint.activate([
-            
-            // HeaderView Contraints
-            headerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
             // ChatsTableView Contraints
             chatsTableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
