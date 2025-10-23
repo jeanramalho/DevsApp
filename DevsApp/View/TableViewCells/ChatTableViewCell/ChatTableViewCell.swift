@@ -15,7 +15,7 @@ class ChatTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "perfil")
-        image.layer.cornerRadius = 50
+        image.layer.cornerRadius = 35
         image.layer.borderColor = Colors.bluePrimary.cgColor
         image.layer.borderWidth = 1
         return image
@@ -25,7 +25,7 @@ class ChatTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Nome do Contato"
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = .white
         return label
     }()
@@ -35,7 +35,7 @@ class ChatTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Testando a ultima mensagem aqui pra ver se funciona"
         label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 12, weight: .thin)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .thin)
         label.textColor = .systemGray
         return label
     }()
@@ -51,6 +51,8 @@ class ChatTableViewCell: UITableViewCell {
     
     private func setupUI(){
         
+        backgroundColor = Colors.bgColor
+        
         setHierarchy()
         setConstraints()
     }
@@ -64,19 +66,19 @@ class ChatTableViewCell: UITableViewCell {
     private func setConstraints(){
         NSLayoutConstraint.activate([
             
-            contactPhotoImageView.heightAnchor.constraint(equalToConstant: 100),
-            contactPhotoImageView.widthAnchor.constraint(equalToConstant: 100),
+            contactPhotoImageView.heightAnchor.constraint(equalToConstant: 70),
+            contactPhotoImageView.widthAnchor.constraint(equalToConstant: 70),
             contactPhotoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
             contactPhotoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             contactPhotoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
             
-            contactNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            contactNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 24),
             contactNameLabel.leadingAnchor.constraint(equalTo: contactPhotoImageView.trailingAnchor, constant: 24),
             contactNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             
             lastMessageLabel.leadingAnchor.constraint(equalTo: contactPhotoImageView.trailingAnchor, constant: 16),
             lastMessageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            lastMessageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+            lastMessageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -24)
         ])
     }
 }

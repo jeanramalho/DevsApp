@@ -62,6 +62,7 @@ class ChatsViewController: UIViewController {
         
         contentView.chatsTableView.dataSource = self
         contentView.chatsTableView.delegate = self
+        contentView.chatsTableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
     }
     
     private func setHierarchy(){
@@ -93,8 +94,7 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Testando tableView"
+        let cell = ChatTableViewCell()
         return cell
     }
     
