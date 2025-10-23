@@ -13,6 +13,7 @@ class ChatsView: UIView {
     
     lazy var navTitleLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         label.textAlignment = .center
         label.textColor = .white
