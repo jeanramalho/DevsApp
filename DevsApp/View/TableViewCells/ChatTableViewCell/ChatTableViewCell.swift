@@ -14,6 +14,7 @@ class ChatTableViewCell: UITableViewCell {
     private let contactPhotoImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "perfil")
         image.layer.cornerRadius = 50
         image.layer.borderColor = Colors.bluePrimary.cgColor
         image.layer.borderWidth = 1
