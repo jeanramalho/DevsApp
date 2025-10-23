@@ -63,6 +63,9 @@ class ChatsViewController: UIViewController {
         contentView.chatsTableView.dataSource = self
         contentView.chatsTableView.delegate = self
         contentView.chatsTableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
+        
+        contentView.chatsTableView.separatorStyle = .singleLine
+        contentView.chatsTableView.separatorColor = .systemGray2
     }
     
     private func setHierarchy(){
@@ -94,7 +97,8 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ChatTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath) as? ChatTableViewCell else {return UITableViewCell()}
+        
         return cell
     }
     
