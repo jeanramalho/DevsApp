@@ -54,7 +54,7 @@ class ChatsView: UIView {
     private func configureTableHeader() {
         
         // Configura dimensões do headerView
-        headerView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: headerHeight)
+        headerView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: headerHeightChat)
         
         // Força layout Interno do header
         headerView.layoutIfNeeded()
