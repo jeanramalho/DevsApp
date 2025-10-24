@@ -43,6 +43,10 @@ class ContactsViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
+    private func updateNavTitleIfNeeded(){
+        
+    }
+    
     private func setHierarchy(){
         
         view.addSubview(contentView)
