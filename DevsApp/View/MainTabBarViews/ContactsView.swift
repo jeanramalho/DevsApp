@@ -9,6 +9,8 @@ import UIKit
 
 class ContactsView: UIView {
     
+    public let headerHeightContacts: CGFloat = 110
+    
     private let headerView: HeaderView = {
         let headerView = HeaderView(title: "Contatos")
         headerView.translatesAutoresizingMaskIntoConstraints = false

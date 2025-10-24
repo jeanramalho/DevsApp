@@ -9,7 +9,7 @@ import Foundation
 
 class ChatsView: UIView {
     
-    public let headerHeight: CGFloat = 110
+    public let headerHeightChat: CGFloat = 110
     
     lazy var navTitleLabel: UILabel = {
         let label = UILabel()
