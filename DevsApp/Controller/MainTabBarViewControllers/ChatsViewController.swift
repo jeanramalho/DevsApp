@@ -39,9 +39,9 @@ class ChatsViewController: UIViewController {
     
     private func setupNavTitleLabel(){
         
-        self.contentView.navTitleLabel.text = navtitle
+        self.contentView.navChatTitleLabel.text = navtitle
         
-        self.navigationItem.titleView = self.contentView.navTitleLabel
+        self.navigationItem.titleView = self.contentView.navChatTitleLabel
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
     }
@@ -53,7 +53,7 @@ class ChatsViewController: UIViewController {
                             tableView: self.contentView.chatsTableView,
                             fadeStart: fadeStart,
                             fadeEnd: fadeEnd,
-                            titleLabel: self.contentView.navTitleLabel)
+                            titleLabel: self.contentView.navChatTitleLabel)
     
     }
     

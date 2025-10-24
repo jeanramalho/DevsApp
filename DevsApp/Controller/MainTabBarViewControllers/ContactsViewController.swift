@@ -11,6 +11,11 @@ class ContactsViewController: UIViewController {
     
     private let contentView: ContactsView = ContactsView()
     
+    private let navTitle: String = "Contatos"
+    
+    private var fadeStart: CGFloat = 0
+    private var fadeEnd: CGFloat = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -18,8 +23,24 @@ class ContactsViewController: UIViewController {
     
     private func setup(){
         
+        setupNavigationBarAppearance()
         setHierarchy()
         setConstraints()
+        setupNavTitleLabel()
+        
+        updateNavTitleAlpha(for: self.contentView.contactsTableView.contentOffset,
+                            tableView: self.contentView.contactsTableView,
+                            fadeStart: fadeStart,
+                            fadeEnd: fadeEnd,
+                            titleLabel: self.contentView.navContactsTitleLabel)
+    }
+    
+    private func setupNavTitleLabel(){
+        
+        self.contentView.navContactsTitleLabel.text = navTitle
+        
+        self.navigationItem.titleView = self.contentView.navContactsTitleLabel
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setHierarchy(){
