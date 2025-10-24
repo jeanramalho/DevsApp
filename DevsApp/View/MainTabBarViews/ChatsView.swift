@@ -11,7 +11,7 @@ class ChatsView: UIView {
     
     public let headerHeightChat: CGFloat = 110
     
-    lazy var navTitleLabel: UILabel = {
+    lazy var navChatTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)

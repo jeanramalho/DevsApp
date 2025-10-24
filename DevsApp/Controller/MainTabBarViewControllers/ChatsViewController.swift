@@ -33,7 +33,7 @@ class ChatsViewController: UIViewController {
                             tableView: self.contentView.chatsTableView,
                             fadeStart: fadeStart,
                             fadeEnd: fadeEnd,
-                            titleLabel: self.contentView.navTitleLabel)
+                            titleLabel: self.contentView.navChatTitleLabel)
 
     }
     
