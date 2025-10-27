@@ -59,6 +59,7 @@ class ContactsViewController: UIViewController {
         let tableView = contentView.contactsTableView
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(ContactsTableViewCell.self, forCellReuseIdentifier: ContactsTableViewCell.identifier)
         
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = .systemGray2
@@ -90,10 +91,11 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell  = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        cell.textLabel?.text = "testando nova tableView"
-        cell.detailTextLabel?.text = "é uma tableview Muito boa"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ContactsTableViewCell.identifier, for: indexPath) as? ContactsTableViewCell else {return UITableViewCell()}
+        
         return cell
+        
     }
     
     
