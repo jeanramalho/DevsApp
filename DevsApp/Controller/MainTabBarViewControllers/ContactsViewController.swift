@@ -43,8 +43,14 @@ class ContactsViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    private func updateNavTitleIfNeeded(){
+    private func updateNavTitleIfNeeded(for offSetY: CGFloat){
         
+        let tableView = self.contentView.contactsTableView
+        updateNavTitleAlpha(for: tableView.contentOffset,
+                            tableView: tableView,
+                            fadeStart: fadeStart,
+                            fadeEnd: fadeEnd,
+                            titleLabel: self.contentView.navContactsTitleLabel)
     }
     
     private func setHierarchy(){

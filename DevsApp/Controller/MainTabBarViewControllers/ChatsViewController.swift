@@ -50,7 +50,7 @@ class ChatsViewController: UIViewController {
         
         let tableView = self.contentView.chatsTableView
         updateNavTitleAlpha(for: tableView.contentOffset,
-                            tableView: self.contentView.chatsTableView,
+                            tableView: tableView,
                             fadeStart: fadeStart,
                             fadeEnd: fadeEnd,
                             titleLabel: self.contentView.navChatTitleLabel)
