@@ -59,6 +59,9 @@ class ContactsViewController: UIViewController {
         let tableView = contentView.contactsTableView
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .systemGray2
     }
     
     private func setHierarchy(){
@@ -79,4 +82,20 @@ extension ContactsViewController: UIScrollViewDelegate {
         let offSetY = scrollView.contentOffset.y
         self.updateNavTitleIfNeeded(for: offSetY)
     }
+}
+
+extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell  = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+        cell.textLabel?.text = "testando nova tableView"
+        cell.detailTextLabel?.text = "é uma tableview Muito boa"
+        return cell
+    }
+    
+    
+    
 }
