@@ -27,6 +27,7 @@ class ContactsViewController: UIViewController {
         setHierarchy()
         setConstraints()
         setupNavTitleLabel()
+        setupContentView()
         
         updateNavTitleAlpha(for: self.contentView.contactsTableView.contentOffset,
                             tableView: self.contentView.contactsTableView,
@@ -51,6 +52,13 @@ class ContactsViewController: UIViewController {
                             fadeStart: fadeStart,
                             fadeEnd: fadeEnd,
                             titleLabel: self.contentView.navContactsTitleLabel)
+    }
+    
+    private func setupContentView(){
+        
+        let tableView = contentView.contactsTableView
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     private func setHierarchy(){

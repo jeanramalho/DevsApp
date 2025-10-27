@@ -60,12 +60,13 @@ class ChatsViewController: UIViewController {
     
     private func setupContentView(){
         
-        contentView.chatsTableView.dataSource = self
-        contentView.chatsTableView.delegate = self
-        contentView.chatsTableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
+        let tableView = contentView.chatsTableView
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
         
-        contentView.chatsTableView.separatorStyle = .singleLine
-        contentView.chatsTableView.separatorColor = .systemGray2
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .systemGray2
     }
     
     private func setHierarchy(){
