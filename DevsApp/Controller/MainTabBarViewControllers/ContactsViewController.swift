@@ -63,3 +63,12 @@ class ContactsViewController: UIViewController {
         contentView.setConstraintsToParent(self.view)
     }
 }
+
+extension ContactsViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // contentOffSet.y indica quando a tabela subiu
+        let offSetY = scrollView.contentOffset.y
+        self.updateNavTitleIfNeeded(for: offSetY)
+    }
+}
