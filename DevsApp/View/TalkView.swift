@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class ChatTalkView: UIView {
+class TalkView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
