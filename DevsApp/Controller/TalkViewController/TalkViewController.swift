@@ -18,8 +18,14 @@ class TalkViewController: UIViewController {
     
     private func setup(){
         
+        configureNavTitleView()
+        setupNavigationBarAppearance()
         setHierarchy()
         setConstraints()
+    }
+    
+    private func configureNavTitleView(){
+        
     }
     
     private func setHierarchy(){
