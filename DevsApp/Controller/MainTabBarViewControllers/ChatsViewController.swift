@@ -103,5 +103,12 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            let talkViewController = TalkViewController()
+            self.navigationController?.pushViewController(talkViewController, animated: true)
+        }
+    }
+    
     
 }

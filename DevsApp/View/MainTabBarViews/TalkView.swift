@@ -20,6 +20,8 @@ class TalkView: UIView {
     
     private func setupUI(){
         
+        backgroundColor = .red
+        
         setHierarchy()
         setConstraints()
     }
