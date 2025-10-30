@@ -28,6 +28,9 @@ class ChatsView: UIView {
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.placeholder = "Busque uma conversa..."
+        return searchBar
     }()
     
     lazy var chatsTableView: UITableView = {
