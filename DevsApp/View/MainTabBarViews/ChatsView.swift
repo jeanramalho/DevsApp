@@ -26,6 +26,10 @@ class ChatsView: UIView {
         return headerView
     }()
     
+    private let searchBar: UISearchBar = {
+        
+    }()
+    
     lazy var chatsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false

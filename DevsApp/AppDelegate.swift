@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseCore
+//import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Importa Configuração do firebase no projeto
-        FirebaseApp.configure()
+       // FirebaseApp.configure()
         return true
     }
 
