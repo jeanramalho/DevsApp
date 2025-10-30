@@ -25,7 +25,7 @@ class ChatsView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = -8
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         return stackView
@@ -75,15 +75,26 @@ class ChatsView: UIView {
         // Cria um header Conteinar com frame explicito
         // UITableView usa o frame da view que for atribuida a tableHeaderView
         let witdh = UIScreen.main.bounds.width
+        let headerContainer = UIView(frame: CGRect(x: 0, y: 0, width: witdh, height: headerHeightChat))
+        headerContainer.backgroundColor = .clear
         
-        // Configura dimensões do headerStackView
-        headerStackView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: headerHeightChat)
+        headerContainer.addSubview(headerStackView)
+        NSLayoutConstraint.activate([
+            headerStackView.topAnchor.constraint(equalTo: headerContainer.topAnchor),
+            headerStackView.leadingAnchor.constraint(equalTo: headerContainer.leadingAnchor),
+            headerStackView.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor),
+            headerStackView.bottomAnchor.constraint(equalTo: headerContainer.bottomAnchor)
+        ])
         
-        // Força layout Interno do header
-        headerStackView.layoutIfNeeded()
+        ChatsSearchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        headerView.heightAnchor.constraint(greaterThanOrEqualToConstant: headerHeightChat - 44 - 16).isActive = true
+        
+        headerContainer.setNeedsLayout()
+        headerContainer.layoutIfNeeded()
         
         // Define tableHeaderView
-        chatsTableView.tableHeaderView = headerStackView
+        chatsTableView.tableHeaderView = headerContainer
     }
     
     private func setHierarchy(){
