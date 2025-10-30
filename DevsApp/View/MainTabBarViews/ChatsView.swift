@@ -20,6 +20,13 @@ class ChatsView: UIView {
         return label
     }()
     
+    private let headerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
     private let headerView: HeaderView = {
         let headerView = HeaderView(title: "Chats")
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,18 +81,12 @@ class ChatsView: UIView {
     
     private func setHierarchy(){
         
-        addSubview(searchBar)
         addSubview(chatsTableView)
         
     }
     
     private func setConstraints(){
         NSLayoutConstraint.activate([
-            
-            // SearchBar Constraints
-            searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
             
             // ChatsTableView Constraints
