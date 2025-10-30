@@ -27,7 +27,7 @@ class ChatsView: UIView {
     }()
     
     private let searchBar: UISearchBar = {
-        
+        let searchBar = UISearchBar()
     }()
     
     lazy var chatsTableView: UITableView = {
