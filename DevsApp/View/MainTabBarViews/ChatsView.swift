@@ -24,6 +24,10 @@ class ChatsView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 8
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         return stackView
     }()
     
@@ -33,12 +37,11 @@ class ChatsView: UIView {
         return headerView
     }()
     
-    private let searchBar: UISearchBar = {
+    private let ChatsSearchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "Busque uma conversa..."
-        searchBar.backgroundColor = Colors.bluePrimary
-        searchBar.tintColor = Colors.bluePrimary
+        searchBar.searchBarStyle = .minimal
         return searchBar
     }()
     
@@ -62,27 +65,33 @@ class ChatsView: UIView {
         
         backgroundColor = Colors.bgColor
         
-        configureTableHeader()
         setHierarchy()
+        configureTableHeader()
         setConstraints()
     }
     
     private func configureTableHeader() {
         
-        // Configura dimensões do headerView
-        headerView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: headerHeightChat)
+        // Cria um header Conteinar com frame explicito
+        // UITableView usa o frame da view que for atribuida a tableHeaderView
+        let witdh = UIScreen.main.bounds.width
+        
+        // Configura dimensões do headerStackView
+        headerStackView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: headerHeightChat)
         
         // Força layout Interno do header
-        headerView.layoutIfNeeded()
+        headerStackView.layoutIfNeeded()
         
         // Define tableHeaderView
-        chatsTableView.tableHeaderView = headerView
+        chatsTableView.tableHeaderView = headerStackView
     }
     
     private func setHierarchy(){
         
         addSubview(chatsTableView)
         
+        headerStackView.addArrangedSubview(headerView)
+        headerStackView.addArrangedSubview(ChatsSearchBar)
     }
     
     private func setConstraints(){
@@ -90,7 +99,7 @@ class ChatsView: UIView {
             
             
             // ChatsTableView Constraints
-            chatsTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            chatsTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             chatsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             chatsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             chatsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
