@@ -72,6 +72,7 @@ class ChatsView: UIView {
     
     private func setHierarchy(){
         
+        addSubview(searchBar)
         addSubview(chatsTableView)
         
     }
@@ -79,8 +80,14 @@ class ChatsView: UIView {
     private func setConstraints(){
         NSLayoutConstraint.activate([
             
-            // ChatsTableView Contraints
-            chatsTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            // SearchBar Constraints
+            searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            
+            // ChatsTableView Constraints
+            chatsTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             chatsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             chatsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             chatsTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
