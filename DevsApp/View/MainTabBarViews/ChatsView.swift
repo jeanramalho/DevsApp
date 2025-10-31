@@ -50,8 +50,12 @@ class ChatsView: UIView {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = Colors.bgColor
+        tableView.contentInsetAdjustmentBehavior = .automatic
         return tableView
     }()
+    
+    // Container usado para calcular o header antes de atribuit tableHeaderView
+    private var headerContainer: UIView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
