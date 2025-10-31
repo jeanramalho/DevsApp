@@ -42,6 +42,7 @@ class ChatsView: UIView {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "Busque uma conversa..."
         searchBar.searchBarStyle = .minimal
+        searchBar.barTintColor = .systemGray
         return searchBar
     }()
     
