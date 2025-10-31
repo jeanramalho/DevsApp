@@ -124,6 +124,25 @@ class ChatsView: UIView {
     
     private func updateTableHeaderIfNeeded(){
         
+        guard let container = headerContainer else {return}
+        
+        let targetWidth = self.bounds.width
+        
+        // Calcula novo tamanho com nova largura
+        let widthConstraint = container.widthAnchor.constraint(equalToConstant: targetWidth)
+        widthConstraint.isActive = true
+        
+        container.setNeedsLayout()
+        container.layoutIfNeeded()
+        
+        let fittingSize = container.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        widthConstraint.isActive = false
+        
+        // Só atualiza se houver mudança de altura (evita resets desnecessários)
+        if chatsTableView.tableHeaderView?.frame.height != fittingSize.height {
+            container.frame = CGRect(x: 0, y: 0, width: targetWidth, height: fittingSize.height)
+            chatsTableView.tableHeaderView = container
+        }
     }
     
     private func setHierarchy(){
