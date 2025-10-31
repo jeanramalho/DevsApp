@@ -25,7 +25,7 @@ class ChatsView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = -8
+        stackView.spacing = 8
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         return stackView
