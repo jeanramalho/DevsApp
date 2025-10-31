@@ -75,31 +75,55 @@ class ChatsView: UIView {
         setConstraints()
     }
     
+    // Chamado automáticamente quando a view muda de tamanho
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateTableHeaderIfNeeded()
+    }
+    
+    // MARK: - Configuração do header usando systemLayoutSizeFitting
     private func configureTableHeader() {
         
-        // Cria um header Conteinar com frame explicito
-        // UITableView usa o frame da view que for atribuida a tableHeaderView
-        let witdh = UIScreen.main.bounds.width
-        let headerContainer = UIView(frame: CGRect(x: 0, y: 0, width: witdh, height: headerHeightChat))
-        headerContainer.backgroundColor = .clear
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.backgroundColor = Colors.bgColor
         
-        headerContainer.addSubview(headerStackView)
+        container.addSubview(headerStackView)
         NSLayoutConstraint.activate([
-            headerStackView.topAnchor.constraint(equalTo: headerContainer.topAnchor),
-            headerStackView.leadingAnchor.constraint(equalTo: headerContainer.leadingAnchor),
-            headerStackView.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor),
-            headerStackView.bottomAnchor.constraint(equalTo: headerContainer.bottomAnchor)
+            headerStackView.topAnchor.constraint(equalTo: container.topAnchor),
+            headerStackView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            headerStackView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            headerStackView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
         
+        // Garante a altura do searchBar pelo calculo
         ChatsSearchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
-        headerView.heightAnchor.constraint(greaterThanOrEqualToConstant: headerHeightChat - 44 - 16).isActive = true
         
-        headerContainer.setNeedsLayout()
-        headerContainer.layoutIfNeeded()
+        // Salva referencia para atualizações futuras
+        self.headerContainer = container
         
-        // Define tableHeaderView
-        chatsTableView.tableHeaderView = headerContainer
+        let targetWidth = UIScreen.main.bounds.width
+        
+        let widthConstraint = container.widthAnchor.constraint(equalToConstant: targetWidth)
+        
+        // Força layout e calcula tamanho comprimido
+        container.setNeedsLayout()
+        container.layoutIfNeeded()
+        let fittingSize = container.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        
+        // Desativa constraint temporária
+        widthConstraint.isActive = false
+        
+        // Atribui frame correto antes de setar tabletHeaderView
+        container.frame = CGRect(x: 0, y: 0, width: targetWidth, height: fittingSize.height)
+        
+        // seta tableHeaderView
+        chatsTableView.tableHeaderView = container
+    }
+    
+    private func updateTableHeaderIfNeeded(){
+        
     }
     
     private func setHierarchy(){
