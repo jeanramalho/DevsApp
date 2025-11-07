@@ -34,7 +34,7 @@ class ContactsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "email@email.com.br"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         label.textColor =  .systemGray3
         return label
     }()
@@ -73,7 +73,6 @@ class ContactsTableViewCell: UITableViewCell {
             contactPhotoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             contactPhotoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
             
-            contactNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             contactNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             contactNameLabel.leadingAnchor.constraint(equalTo: contactPhotoImageView.trailingAnchor, constant: 24),
             contactNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
