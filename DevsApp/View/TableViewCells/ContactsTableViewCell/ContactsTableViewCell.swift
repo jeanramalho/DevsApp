@@ -60,6 +60,7 @@ class ContactsTableViewCell: UITableViewCell {
         
         addSubview(contactPhotoImageView)
         addSubview(contactNameLabel)
+        addSubview(contactEmailLabel)
     }
     
     private func setConstraints(){
@@ -73,8 +74,15 @@ class ContactsTableViewCell: UITableViewCell {
             contactPhotoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
             
             contactNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            contactNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             contactNameLabel.leadingAnchor.constraint(equalTo: contactPhotoImageView.trailingAnchor, constant: 24),
-            contactNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
+            contactNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            
+            contactEmailLabel.topAnchor.constraint(equalTo: contactNameLabel.bottomAnchor, constant: 8),
+            contactEmailLabel.leadingAnchor.constraint(equalTo: contactPhotoImageView.trailingAnchor, constant: 24),
+            contactEmailLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            contactEmailLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+            
         ])
     }
 }
