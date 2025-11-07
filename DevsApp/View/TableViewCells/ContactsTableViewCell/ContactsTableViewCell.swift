@@ -80,7 +80,7 @@ class ContactsTableViewCell: UITableViewCell {
             contactEmailLabel.topAnchor.constraint(equalTo: contactNameLabel.bottomAnchor, constant: 8),
             contactEmailLabel.leadingAnchor.constraint(equalTo: contactPhotoImageView.trailingAnchor, constant: 24),
             contactEmailLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            contactEmailLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 24)
+            contactEmailLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -24)
             
         ])
     }
