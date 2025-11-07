@@ -34,8 +34,8 @@ class ContactsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "email@email.com.br"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor =  .systemGray2
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.textColor =  .systemGray
         return label
     }()
     
