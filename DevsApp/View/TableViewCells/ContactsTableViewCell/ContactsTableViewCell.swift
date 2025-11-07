@@ -30,6 +30,15 @@ class ContactsTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let contactEmailLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "email@email.com.br"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        label.textColor =  .systemGray3
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
