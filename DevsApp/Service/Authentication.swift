@@ -40,4 +40,21 @@ class Authentication {
         }
     } // Fim da função Login
     
+    
+    public func checkLogin(completion: @escaping (Bool, String?) -> Void){
+        
+        auth.addStateDidChangeListener { auth, user in
+            
+            if let loggedUser = user {
+                completion(true, loggedUser.uid)
+                return
+            } else {
+                completion(false, nil)
+                return
+            } // Fim do if/else
+            
+        } // Fim do auth.addStateDidChangeListener
+        
+    } // Fim da função do checkLogin
+    
 }
