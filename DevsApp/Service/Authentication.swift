@@ -38,5 +38,6 @@ class Authentication {
             
             completion(.success(()))
         }
-    }
+    } // Fim da função Login
+    
 }
