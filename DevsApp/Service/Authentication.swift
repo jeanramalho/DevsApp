@@ -11,4 +11,5 @@ import FirebaseFirestore
 
 class Authentication {
     
+    let auth = Auth.auth()
 }
