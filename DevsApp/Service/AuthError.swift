@@ -8,14 +8,14 @@ import Foundation
 
 enum AuthError: Error {
     
-    case invalidCredentitals
+    case invalidCredentials
     case userNotFound
     case unknowError
     case custom(message: String)
     
     var localizedDescription: String {
         switch self {
-        case .invalidCredentitals:
+        case .invalidCredentials:
             return "Email ou Senha inválidos!"
         case .userNotFound:
             return "Usuário não encontrado!"

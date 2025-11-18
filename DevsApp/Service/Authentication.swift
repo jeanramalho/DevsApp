@@ -13,7 +13,7 @@ class Authentication {
     
     let auth = Auth.auth()
     
-    public func login(userEmail: String, userPassword: String, completion: @escaping () -> Void) {
+    public func login(userEmail: String, userPassword: String, completion: @escaping (Result<Void, AuthError>) -> Void) {
         
         auth.signIn(withEmail: userEmail, password: userPassword) { result , error in
             
