@@ -12,4 +12,31 @@ import FirebaseFirestore
 class Authentication {
     
     let auth = Auth.auth()
+    
+    public func login(userEmail: String, userPassword: String, completion: @escaping () -> Void) {
+        
+        auth.signIn(withEmail: userEmail, password: userPassword) { result , error in
+            
+            if let error = error as NSError? {
+                
+                switch AuthErrorCode(rawValue: error.code) {
+                case .wrongPassword, .invalidEmail:
+                    completion(.failure(.invalidCredentials))
+                case .userNotFound:
+                    completion(.failure(.userNotFound))
+                default:
+                    completion(.failure(.custom(message: error.localizedDescription)))
+                } // Fim do Switch
+                
+                return
+            } // Fim do if let error
+            
+            guard result?.user != nil else {
+                completion(.failure(.userNotFound))
+                return
+            } // Fim do guard result.user
+            
+            completion(.success(()))
+        }
+    }
 }
