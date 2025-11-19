@@ -11,7 +11,8 @@ import FirebaseFirestore
 
 class Authentication {
     
-    let auth = Auth.auth()
+    private let auth = Auth.auth()
+    private let firestore: Firestore = Firestore.firestore()
     
     public func login(userEmail: String, userPassword: String, completion: @escaping (Result<Void, AuthError>) -> Void) {
         
