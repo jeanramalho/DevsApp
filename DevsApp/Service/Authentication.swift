@@ -14,6 +14,11 @@ class Authentication {
     private let auth = Auth.auth()
     private let firestore: Firestore = Firestore.firestore()
     
+    public func createUser(completion: ){
+        
+        auth.
+    }
+    
     public func login(userEmail: String, userPassword: String, completion: @escaping (Result<Void, AuthError>) -> Void) {
         
         auth.signIn(withEmail: userEmail, password: userPassword) { result , error in
