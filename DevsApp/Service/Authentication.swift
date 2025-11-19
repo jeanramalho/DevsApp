@@ -14,9 +14,35 @@ class Authentication {
     private let auth = Auth.auth()
     private let firestore: Firestore = Firestore.firestore()
     
-    public func createUser(completion: ){
+    public func createUser(user: User, completion: @escaping (Bool) -> Void ){
+    
         
-        auth.
+        auth.createUser(withEmail: user.email, password: user.password) { dataResult, error in
+            
+            if let error = error {
+                // Erro ao criar conta de usuário
+                print("Erro ao criar conta: \(error.localizedDescription)")
+                completion(false)
+                return
+            } else {
+                
+                guard let userId = dataResult?.user.uid else {
+                    // Erro ao recuperar ID do usuário
+                    print("Erro ao recuperar ID do usuário")
+                    completion(false)
+                    return
+                } // Fim do guard le userId
+                
+                self.firestore.collection("users")
+                    .document(userId)
+                    .setData([
+                        "nome": user.name,
+                        "email": user.email
+                    ])
+                
+            } // Fim do if/else de verificação de criação de usuário
+            
+        }
     }
     
     public func login(userEmail: String, userPassword: String, completion: @escaping (Result<Void, AuthError>) -> Void) {
