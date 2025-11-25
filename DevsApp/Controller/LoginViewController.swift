@@ -19,9 +19,17 @@ class LoginViewController: UIViewController {
     
     private func setup(){
         
+        checkAuthentication()
         setupContentView()
         setHierarchy()
         setConstraints()
+    }
+    
+    private func checkAuthentication(){
+        
+        let mainTabViewController: MainTabBarController = MainTabBarController()
+        
+        self.loginViewModel.checkAuthentication(currentViewController: self, destinyViewController: mainTabViewController)
     }
     
     private func setHierarchy(){
