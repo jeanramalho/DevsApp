@@ -5,6 +5,7 @@
 //  Created by Jean Ramalho on 25/11/25.
 //
 import Foundation
+import UIKit
 
 final class LoginViewModel: NSObject {
     
@@ -14,5 +15,10 @@ final class LoginViewModel: NSObject {
         super.init()
     }
     
-    
+    public func checkAuthentication(viewController: UIViewController){
+        
+        self.auth.checkLogin { auth, userId in
+            <#code#>
+        }
+    }
 }

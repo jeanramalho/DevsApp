@@ -73,7 +73,7 @@ class Authentication {
     } // Fim da função Login
     
     
-    public func checkLogin(completion: @escaping (Bool, String?) -> Void){
+    public func checkLogin(completion: @escaping (_ auth: Bool, _ userId: String?) -> Void){
         
         auth.addStateDidChangeListener { auth, user in
             
