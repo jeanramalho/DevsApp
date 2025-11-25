@@ -15,10 +15,22 @@ final class LoginViewModel: NSObject {
         super.init()
     }
     
-    public func checkAuthentication(viewController: UIViewController){
+    public func checkAuthentication(currentViewController: UIViewController ,destinyViewController: UIViewController){
         
         self.auth.checkLogin { auth, userId in
-            <#code#>
-        }
-    }
-}
+            
+            guard let userId = userId else {return}
+            
+            if auth {
+                DispatchQueue.main.async {
+                    currentViewController.navigationController?.setViewControllers([destinyViewController], animated: true)
+                }
+            } else {
+                print("Usuário não está logado")
+            } // Fim do if/else que confirma autenticação
+            
+        } // Fim do checkLogin do auth
+        
+    } // Fim da função checkAuthentication
+    
+} // Fim da Classe LoginViewModel
