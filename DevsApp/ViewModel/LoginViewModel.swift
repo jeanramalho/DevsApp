@@ -35,6 +35,10 @@ final class LoginViewModel: NSObject {
 
     public func login(user: String, password: String){
 
+        self.auth.login(userEmail: user, password: password) {
+            
+        }        
+
     } // Fim da função de login
     
 } // Fim da Classe LoginViewModel
