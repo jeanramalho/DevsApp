@@ -32,5 +32,9 @@ final class LoginViewModel: NSObject {
         } // Fim do checkLogin do auth
         
     } // Fim da função checkAuthentication
+
+    public func loginUser(){
+        
+    }
     
 } // Fim da Classe LoginViewModel
