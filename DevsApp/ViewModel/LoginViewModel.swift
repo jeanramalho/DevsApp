@@ -35,9 +35,9 @@ final class LoginViewModel: NSObject {
 
     public func login(user: String, password: String){
 
-        self.auth.login(userEmail: user, password: password) {
-
-        } // Fim da função de login do service       
+        self.auth.login(userEmail: user, userPassword: password) { Result<Void, AuthError> in
+            <#code#>
+        } // Fim da função de login do service
 
     } // Fim da função de login
     
