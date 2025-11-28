@@ -40,9 +40,10 @@ final class LoginViewModel: NSObject {
             switch result {
             case .success(let success):
                 print("Login realizado com sucesso")
-            case .failure(let error)
-                print(")
-            }
+            case .failure(let error):
+                print("Falha ao realiza login \(error.localizedDescription)")
+            } // Fim do switch de login
+            
         } //Fim da função de login do service
 
     } // Fim da função de login
