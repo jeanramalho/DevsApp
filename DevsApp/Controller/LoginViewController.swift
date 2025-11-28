@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     private let contentView: LoginView = LoginView()
     private let loginViewModel: LoginViewModel = LoginViewModel()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -46,7 +47,7 @@ class LoginViewController: UIViewController {
         
         contentView.signUpButton.addTarget(self, action: #selector(signUpRedirect), for: .touchUpInside)
         
-        contentView.loginButton.addTarget(self, action: #selector(loginToMainView), for: .touchUpInside)
+        contentView.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
     }
     
     
@@ -57,7 +58,7 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
-    @objc private func loginToMainView(){
+    @objc private func login(){
         
         let mainTabBarController = MainTabBarController()
         
