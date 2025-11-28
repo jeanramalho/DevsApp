@@ -59,9 +59,9 @@ class LoginViewController: UIViewController {
     
     @objc private func login(){
         
-        guard let userEmail: String = contentView
+        guard let credentials: Credentials = contentView.getUserCredentials() else {return}
         
-        self.loginViewModel.login(user: <#T##String#>, password: <#T##String#>)
+        self.loginViewModel.login(user: credentials.userName, password: credentials.password)
     }
     
 }
