@@ -12,7 +12,6 @@ class LoginViewController: UIViewController {
     private let contentView: LoginView = LoginView()
     private let loginViewModel: LoginViewModel = LoginViewModel()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -60,9 +59,9 @@ class LoginViewController: UIViewController {
     
     @objc private func login(){
         
-        let mainTabBarController = MainTabBarController()
+        guard let userEmail: String = contentView
         
-        self.navigationController?.setViewControllers([mainTabBarController], animated: true)
+        self.loginViewModel.login(user: <#T##String#>, password: <#T##String#>)
     }
     
 }

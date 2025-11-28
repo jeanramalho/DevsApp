@@ -113,7 +113,17 @@ class LoginView: UIView {
             
         ])
     }
+    
+    public func getUserCredentials() -> Credentials? {
         
+        guard let userName = self.emailTextFiel.text,
+        let password = self.passwordTextFiel.text
+        else {return nil}
+        
+        let userCredentials = Credentials(userName: userName, password: password)
+        
+        return userCredentials
+    }
 }
 
 
