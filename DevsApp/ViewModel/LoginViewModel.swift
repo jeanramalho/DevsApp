@@ -8,45 +8,92 @@ import Foundation
 import UIKit
 import Combine
 
-final class LoginViewModel: NSObject {
+enum LoginState {
+    case idle
+    case loading
+    case success
+    case failure(AuthError)
+}
+
+protocol LoginViewModelType {
+    var isPasswordVisible: CurrentValueSubject<Bool, Never> {get}
+    var isAuthenticated: CurrentValueSubject<Bool, Never> {get}
+    var loginState: CurrentValueSubject<LoginState, Never> {get}
+    func setPasswordVisibility(_ visible: Bool)
+    func togglePasswordVisibility()
+    func login(user: String, password: String)
+    func checkAuthentication()
+}
+
+final class LoginViewModel: LoginViewModelType {
     
-    private let auth: Authentication = Authentication()
     
-    override init(){
-        super.init()
+    // MARK: - Outputs (Publishers)
+    let isPasswordVisible = CurrentValueSubject<Bool, Never>(false)
+    let isAuthenticated = CurrentValueSubject<Bool, Never>(false)
+    let loginState = CurrentValueSubject<LoginState, Never>(.idle)
+    
+    // MARK: - Dependences
+    let auth: Authentication
+    
+    // MARK: - Init
+    init(auth: Authentication = Authentication()){
+        self.auth = auth
     }
     
-    public func checkAuthentication(currentViewController: UIViewController ,destinyViewController: UIViewController){
+    // MARK: - Passowrd visibility control
+    func setPasswordVisibility(_ visible: Bool){
+        isPasswordVisible.send(visible)
+    }
+    
+    func togglePasswordVisibility() {
+        isPasswordVisible.send(!isPasswordVisible.value)
+    }
+    
+    // MARK: - Login
+    public func login(user: String, password: String){
         
-        self.auth.checkLogin { auth, userId in
+        let emailTrimmed = user.trimmingCharacters(in: .whitespacesAndNewlines)
+        let passwordTrimmed = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard !emailTrimmed.isEmpty, !passwordTrimmed.isEmpty else {
+            loginState.send(.failure(.custom(message: "Preencha os campos de email e senha para realizar login")))
+            return
+        }
+        
+        loginState.send(.loading)
+
+        self.auth.login(userEmail: emailTrimmed, userPassword: passwordTrimmed) { [weak self] result in
+            guard let self = self else {return}
             
-            guard let userId = userId else {return}
-            
-            if auth {
-                DispatchQueue.main.async {
-                    currentViewController.navigationController?.setViewControllers([destinyViewController], animated: true)
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    self.loginState.send(.success)
+                case .failure(let error):
+                    self.loginState.send(.failure(error))
                 }
-            } else {
-                print("Usuário não está logado")
-            } // Fim do if/else que confirma autenticação
+            }
+            
+        } //Fim da função de login do service
+
+    } // Fim da função de login
+    
+    // MARK: - Check Authentication
+    public func checkAuthentication() {
+        
+        self.auth.checkLogin { [weak self] authFlag, _ in
+            
+            guard let self = self else {return}
+            
+            DispatchQueue.main.async {
+                self.isAuthenticated.send(authFlag)
+            }
             
         } // Fim do checkLogin do auth
         
     } // Fim da função checkAuthentication
 
-    public func login(user: String, password: String){
-
-        self.auth.login(userEmail: user, userPassword: password) { result in
-        
-            switch result {
-            case .success(let success):
-                print("Login realizado com sucesso")
-            case .failure(let error):
-                print("Falha ao realiza login \(error.localizedDescription)")
-            } // Fim do switch de login
-            
-        } //Fim da função de login do service
-
-    } // Fim da função de login
+  
     
 } // Fim da Classe LoginViewModel
