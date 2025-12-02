@@ -31,6 +31,7 @@ class LoginView: UIView {
     private let passwordTextFiel: PaddedTextField = {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.isSecureTextEntry = true
         textField.placeholder = "Senha"
         textField.layer.cornerRadius = 6
         textField.backgroundColor = .white
@@ -38,10 +39,27 @@ class LoginView: UIView {
         return textField
     }()
     
-    private let showPasswordSwitch: UISwitch = {
-        let showPassSwitch = UISwitch()
-        showPassSwitch.translatesAutoresizingMaskIntoConstraints = false
-        return showPassSwitch
+    private let showPasswordLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Mostrar Senha"
+        label.textColor = .systemGray2
+        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        return label
+    }()
+    
+    lazy var showPasswordSwitch: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.translatesAutoresizingMaskIntoConstraints = false
+        switchControl.onTintColor = Colors.bluePrimary
+        return switchControl
+    }()
+    
+    private let showPassWordStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        return stackView
     }()
     
     lazy var loginButton: UIButton = {
@@ -83,11 +101,16 @@ class LoginView: UIView {
     
     private func setHierarchy(){
         
+        showPassWordStackView.addArrangedSubview(showPasswordLabel)
+        showPassWordStackView.addArrangedSubview(showPasswordSwitch)
+        
         addSubview(logoDevsApp)
         addSubview(emailTextFiel)
         addSubview(passwordTextFiel)
         addSubview(loginButton)
         addSubview(signUpButton)
+        addSubview(showPassWordStackView)
+    
     }
     
     private func setConstraints(){
@@ -109,9 +132,13 @@ class LoginView: UIView {
             passwordTextFiel.topAnchor.constraint(equalTo: emailTextFiel.bottomAnchor, constant: 15),
             passwordTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
+            showPassWordStackView.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
+            showPassWordStackView.widthAnchor.constraint(equalToConstant: 250),
+            showPassWordStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
             loginButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.widthAnchor.constraint(equalToConstant: 260),
-            loginButton.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
+            loginButton.topAnchor.constraint(equalTo: showPassWordStackView.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
