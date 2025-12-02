@@ -31,6 +31,7 @@ class SignUpView: UIView {
         textField.placeholder = "Digite seu email..."
         textField.keyboardType = .emailAddress
         textField.backgroundColor = .white
+        textField.autocapitalizationType = .none
         textField.layer.cornerRadius = 6
         textField.textColor = Colors.bluePrimary
         return textField

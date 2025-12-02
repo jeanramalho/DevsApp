@@ -20,6 +20,7 @@ class LoginView: UIView {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Email"
+        textField.autocapitalizationType = .none
         textField.keyboardType = .emailAddress
         textField.layer.cornerRadius = 6
         textField.backgroundColor = .white
