@@ -47,6 +47,8 @@ class LoginViewController: UIViewController {
         contentView.signUpButton.addTarget(self, action: #selector(signUpRedirect), for: .touchUpInside)
         
         contentView.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
+        
+
     }
     
     

@@ -48,7 +48,7 @@ class LoginView: UIView {
         return label
     }()
     
-    lazy var showPasswordSwitch: UISwitch = {
+    private let showPasswordSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.translatesAutoresizingMaskIntoConstraints = false
         switchControl.onTintColor = Colors.bluePrimary
@@ -157,7 +157,19 @@ class LoginView: UIView {
         let userCredentials = Credentials(userName: userName, password: password)
         
         return userCredentials
-    }
+    } // Fim da função getUserCredentials
+    
+    public func showPassword(){
+        
+        if showPasswordSwitch.isOn {
+            
+            passwordTextFiel.isSecureTextEntry = false
+            
+        } else {
+            
+            passwordTextFiel.isSecureTextEntry = true
+        }
+    } // Fim da função showPassword
 }
 
 
