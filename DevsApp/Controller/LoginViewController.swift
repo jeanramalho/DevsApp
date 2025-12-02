@@ -48,7 +48,6 @@ class LoginViewController: UIViewController {
         
         contentView.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         
-
     }
     
     

@@ -16,7 +16,7 @@ class LoginView: UIView {
         return image
     }()
     
-    private let emailTextFiel: PaddedTextField = {
+    private let emailTextField: PaddedTextField = {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Email"
@@ -82,14 +82,24 @@ class LoginView: UIView {
         return button
     }()
     
+    // Callbacks
+    public var onShowPasswordToggle: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupUIElements()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func setupUIElements(){
+        
+        
+    }
+    
     
     private func setupUI(){
         
@@ -105,7 +115,7 @@ class LoginView: UIView {
         showPassWordStackView.addArrangedSubview(showPasswordSwitch)
         
         addSubview(logoDevsApp)
-        addSubview(emailTextFiel)
+        addSubview(emailTextField)
         addSubview(passwordTextFiel)
         addSubview(loginButton)
         addSubview(signUpButton)
@@ -122,14 +132,14 @@ class LoginView: UIView {
             logoDevsApp.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
             logoDevsApp.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            emailTextFiel.heightAnchor.constraint(equalToConstant: 35),
-            emailTextFiel.widthAnchor.constraint(equalToConstant: 300),
-            emailTextFiel.topAnchor.constraint(equalTo: logoDevsApp.bottomAnchor, constant: 20),
-            emailTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            emailTextField.heightAnchor.constraint(equalToConstant: 35),
+            emailTextField.widthAnchor.constraint(equalToConstant: 300),
+            emailTextField.topAnchor.constraint(equalTo: logoDevsApp.bottomAnchor, constant: 20),
+            emailTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             passwordTextFiel.heightAnchor.constraint(equalToConstant: 35),
             passwordTextFiel.widthAnchor.constraint(equalToConstant: 300),
-            passwordTextFiel.topAnchor.constraint(equalTo: emailTextFiel.bottomAnchor, constant: 15),
+            passwordTextFiel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15),
             passwordTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             showPassWordStackView.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
@@ -150,7 +160,7 @@ class LoginView: UIView {
     
     public func getUserCredentials() -> Credentials? {
         
-        guard let userName = self.emailTextFiel.text,
+        guard let userName = self.emailTextField.text,
         let password = self.passwordTextFiel.text
         else {return nil}
         
@@ -159,17 +169,17 @@ class LoginView: UIView {
         return userCredentials
     } // Fim da função getUserCredentials
     
-    public func showPassword(){
+    public func setPasswordVisibility(_ visible: Bool){
+      
+        let currentlyFirstResponder = self.passwordTextFiel.isFirstResponder
+        let currentText = self.passwordTextFiel.text
         
-        if showPasswordSwitch.isOn {
-            
-            passwordTextFiel.isSecureTextEntry = false
-            
-        } else {
-            
-            passwordTextFiel.isSecureTextEntry = true
-        }
-    } // Fim da função showPassword
+        if currentlyFirstResponder {self.passwordTextFiel.resignFirstResponder()}
+        self.passwordTextFiel.isSecureTextEntry = !visible
+        self.passwordTextFiel.text = currentText
+        if currentlyFirstResponder {self.passwordTextFiel.becomeFirstResponder()}
+      
+    } // Fim da função setPasswordVisibility
 }
 
 
