@@ -38,6 +38,12 @@ class LoginView: UIView {
         return textField
     }()
     
+    private let showPasswordSwitch: UISwitch = {
+        let showPassSwitch = UISwitch()
+        showPassSwitch.translatesAutoresizingMaskIntoConstraints = false
+        return showPassSwitch
+    }()
+    
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
