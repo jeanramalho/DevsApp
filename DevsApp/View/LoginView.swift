@@ -9,6 +9,7 @@ import UIKit
 
 class LoginView: UIView {
     
+    //MARK: - Subviews
     private let logoDevsApp: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +72,7 @@ class LoginView: UIView {
         button.layer.borderColor = Colors.bluePrimary.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 6
+        button.accessibilityIdentifier = "loginButton"
         return button
     }()
     
@@ -79,6 +81,7 @@ class LoginView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Cadastre-se", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.accessibilityIdentifier = "singupButton"
         return button
     }()
     
