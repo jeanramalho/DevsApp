@@ -85,8 +85,13 @@ class LoginView: UIView {
         return button
     }()
     
-    // Callbacks
+    // MARK: - Callbacks
+    // Notice: onShowPasswordToggle returns the new boolean state
+    
     public var onShowPasswordToggle: (() -> Void)?
+    public var onLoginTap: (() -> Void)?
+    public var onSignUpTap: (() -> Void)?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
