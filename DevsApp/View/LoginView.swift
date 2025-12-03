@@ -26,10 +26,11 @@ class LoginView: UIView {
         textField.layer.cornerRadius = 6
         textField.backgroundColor = .white
         textField.textColor = Colors.bluePrimary
+        textField.accessibilityLabel = "emailField"
         return textField
     }()
     
-    private let passwordTextFiel: PaddedTextField = {
+    private let passwordTextField: PaddedTextField = {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isSecureTextEntry = true
@@ -37,6 +38,7 @@ class LoginView: UIView {
         textField.layer.cornerRadius = 6
         textField.backgroundColor = .white
         textField.textColor = Colors.bluePrimary
+        textField.accessibilityLabel = "emailField"
         return textField
     }()
     
@@ -88,7 +90,7 @@ class LoginView: UIView {
     // MARK: - Callbacks
     // Notice: onShowPasswordToggle returns the new boolean state
     
-    public var onShowPasswordToggle: (() -> Void)?
+    public var onShowPasswordToggle: ((Bool) -> Void)?
     public var onLoginTap: (() -> Void)?
     public var onSignUpTap: (() -> Void)?
     
@@ -96,25 +98,26 @@ class LoginView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        setupUIElements()
+        setupActions()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupUIElements(){
-        
-        
-    }
-    
-    
+    //MARK: - Setup
     private func setupUI(){
         
         backgroundColor = Colors.bgColor
         
         setHierarchy()
         setConstraints()
+    }
+    
+    private func setupActions(){
+        showPasswordSwitch.addTarget(self, action: #selector(switchChanged(_:)), for: .valueChanged)
+        loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
     }
     
     private func setHierarchy(){
@@ -124,11 +127,11 @@ class LoginView: UIView {
         
         addSubview(logoDevsApp)
         addSubview(emailTextField)
-        addSubview(passwordTextFiel)
+        addSubview(passwordTextField)
         addSubview(loginButton)
         addSubview(signUpButton)
         addSubview(showPassWordStackView)
-    
+        
     }
     
     private func setConstraints(){
@@ -145,12 +148,12 @@ class LoginView: UIView {
             emailTextField.topAnchor.constraint(equalTo: logoDevsApp.bottomAnchor, constant: 20),
             emailTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            passwordTextFiel.heightAnchor.constraint(equalToConstant: 35),
-            passwordTextFiel.widthAnchor.constraint(equalToConstant: 300),
-            passwordTextFiel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15),
-            passwordTextFiel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 35),
+            passwordTextField.widthAnchor.constraint(equalToConstant: 300),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15),
+            passwordTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            showPassWordStackView.topAnchor.constraint(equalTo: passwordTextFiel.bottomAnchor, constant: 20),
+            showPassWordStackView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             showPassWordStackView.widthAnchor.constraint(equalToConstant: 250),
             showPassWordStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
@@ -166,10 +169,16 @@ class LoginView: UIView {
         ])
     }
     
+    // MARK: - Actions
+    
+    @objc private func switchChanged(_ sender: UISwitch){
+        onShowPasswordToggle?(sender.isOn)
+    }
+    
     public func getUserCredentials() -> Credentials? {
         
         guard let userName = self.emailTextField.text,
-        let password = self.passwordTextFiel.text
+        let password = self.passwordTextField.text
         else {return nil}
         
         let userCredentials = Credentials(userName: userName, password: password)
@@ -179,13 +188,13 @@ class LoginView: UIView {
     
     public func setPasswordVisibility(_ visible: Bool){
       
-        let currentlyFirstResponder = self.passwordTextFiel.isFirstResponder
-        let currentText = self.passwordTextFiel.text
+        let currentlyFirstResponder = self.passwordTextField.isFirstResponder
+        let currentText = self.passwordTextField.text
         
-        if currentlyFirstResponder {self.passwordTextFiel.resignFirstResponder()}
-        self.passwordTextFiel.isSecureTextEntry = !visible
-        self.passwordTextFiel.text = currentText
-        if currentlyFirstResponder {self.passwordTextFiel.becomeFirstResponder()}
+        if currentlyFirstResponder {self.passwordTextField.resignFirstResponder()}
+        self.passwordTextField.isSecureTextEntry = !visible
+        self.passwordTextField.text = currentText
+        if currentlyFirstResponder {self.passwordTextField.becomeFirstResponder()}
       
     } // Fim da função setPasswordVisibility
 }
