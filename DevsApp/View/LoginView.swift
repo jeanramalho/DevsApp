@@ -179,7 +179,9 @@ class LoginView: UIView {
         onLoginTap?()
     }
     
-    @o
+    @objc private func signupTapped(){
+        onSignUpTap?()
+    }
     
     
     public func getUserCredentials() -> Credentials? {
