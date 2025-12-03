@@ -175,6 +175,13 @@ class LoginView: UIView {
         onShowPasswordToggle?(sender.isOn)
     }
     
+    @objc private func loginTapped(){
+        onLoginTap?()
+    }
+    
+    @o
+    
+    
     public func getUserCredentials() -> Credentials? {
         
         guard let userName = self.emailTextField.text,
