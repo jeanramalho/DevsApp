@@ -179,11 +179,11 @@ class LoginView: UIView {
         onLoginTap?()
     }
     
-    @objc private func signupTapped(){
+    @objc private func signUpTapped(){
         onSignUpTap?()
     }
     
-    
+    // MARK: - Public Helpers
     public func getUserCredentials() -> Credentials? {
         
         guard let userName = self.emailTextField.text,
@@ -203,6 +203,7 @@ class LoginView: UIView {
         if currentlyFirstResponder {self.passwordTextField.resignFirstResponder()}
         self.passwordTextField.isSecureTextEntry = !visible
         self.passwordTextField.text = currentText
+        self.showPasswordSwitch.isOn = visible
         if currentlyFirstResponder {self.passwordTextField.becomeFirstResponder()}
       
     } // Fim da função setPasswordVisibility
