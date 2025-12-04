@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
         viewModel.isAuthenticated
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isAuth in
-                guard let self = self else return
+                guard let self = self else {return}
                     if isAuth {
                         let mainTabBarController = MainTabBarController()
                         // replace stack with main tab
@@ -100,24 +100,49 @@ class LoginViewController: UIViewController {
             }
             .store(in: &cancellables)
             
-            
-            
+        // Observe login state for UI feedback
+        viewModel.loginState
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] state in
+                guard let self = self else {return}
+                switch state {
+                case .idle:
+                    break
+                case .loading:
+                    //Show loading indicator
+                    break
+                case .success:
+                    let mainTabBarController = MainTabBarController()
+                    self.navigationController?.setViewControllers([mainTabBarController], animated: true)
+                case .failure(let error):
+                    self.showError(error.localizedDescription)
+                }
+            }
+            .store(in: &cancellables)
     }
     
+    // MARK: - Actions
     
-    
-    @objc private func signUpRedirect(){
+    private func signUpRedirect(){
         
         let signUpViewController = SignUpViewController()
         
         self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
-    @objc private func login(){
+    private func login(){
         
-        guard let credentials: Credentials = contentView.getUserCredentials() else {return}
-        
-        self.loginViewModel.login(user: credentials.userName, password: credentials.password)
+        guard let credentials = contentView.getUserCredentials() else {
+            showError("Preencha seu email e senha")
+            return
+        }
+        viewModel.login(user: credentials.userName, password: credentials.password)
     }
     
+    // MARK: - Helpers
+    private func showError(_ message: String) {
+        let alert = UIAlertController(title: "Erro", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
