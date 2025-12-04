@@ -10,27 +10,39 @@ import Combine
 
 class LoginViewController: UIViewController {
     
+    // MARK: - UI & ViewModel
     private let contentView: LoginView = LoginView()
-    private let loginViewModel: LoginViewModel = LoginViewModel()
+    private let viewModel: LoginViewModelType
+    private let cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Init (DI Friendly)
+    init(viewModel: LoginViewModelType = LoginViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.viewModel = LoginViewModel()
+        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - lifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        bindViewModel()
+        viewModel.checkAuthentication()
     }
     
     private func setup(){
         
-        checkAuthentication()
-        setupContentView()
+        view.backgroundColor = Colors.bgColor
+        
         setHierarchy()
         setConstraints()
-    }
-    
-    private func checkAuthentication(){
-        
-        let mainTabViewController: MainTabBarController = MainTabBarController()
-        
-        self.loginViewModel.checkAuthentication(currentViewController: self, destinyViewController: mainTabViewController)
+        setupContentActions()
     }
     
     private func setHierarchy(){
@@ -41,6 +53,13 @@ class LoginViewController: UIViewController {
     private func setConstraints(){
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.setConstraintsToParent(self.view)
+    }
+    
+    private func setupContentActions() {
+        // user events -> ViewModel
+        contentView.onShowPasswordToggle = {[weak self] isOn in
+            self?.viewModel.setPasswordVisibility(isOn)
+        }
     }
     
     private func setupContentView(){
