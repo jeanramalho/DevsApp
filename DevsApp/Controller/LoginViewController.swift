@@ -60,6 +60,15 @@ class LoginViewController: UIViewController {
         contentView.onShowPasswordToggle = {[weak self] isOn in
             self?.viewModel.setPasswordVisibility(isOn)
         }
+        
+        
+        contentView.onLoginTap = { [weak self] in
+            self?.login()
+        }
+        
+        contentView.onLoginTap = { [weak self] in
+            self?.signUpRedirect()
+        }
     }
     
     private func setupContentView(){
