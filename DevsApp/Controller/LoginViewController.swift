@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     // MARK: - UI & ViewModel
     private let contentView: LoginView = LoginView()
     private let viewModel: LoginViewModelType
-    private let cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Init (DI Friendly)
     init(viewModel: LoginViewModelType = LoginViewModel()) {
@@ -71,13 +71,39 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func setupContentView(){
+    // MARK: - Bindings (VM -> View/Controller)
+    private func bindViewModel() {
         
-        contentView.signUpButton.addTarget(self, action: #selector(signUpRedirect), for: .touchUpInside)
+        //Bind password visibility (VM -> View)
+        viewModel.isPasswordVisible
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] visible in
+                self?.contentView.setPasswordVisibility(visible)
+            }
+            .store(in: &cancellables)
         
-        contentView.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
-        
+        //Observe authentication state (VM -> Controller -> Navigation)
+        viewModel.isAuthenticated
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isAuth in
+                guard let self = self else return
+                    if isAuth {
+                        let mainTabBarController = MainTabBarController()
+                        // replace stack with main tab
+                        self.navigationController?.setViewControllers([mainTabBarController], animated: true)
+                        
+                    } else {
+                        // stay on login screen
+                        // presents custom Alert
+                        
+                    }
+            }
+            .store(in: &cancellables)
+            
+            
+            
     }
+    
     
     
     @objc private func signUpRedirect(){
