@@ -5,42 +5,63 @@
 //  Created by Jean Ramalho on 18/11/25.
 //
 import Foundation
-import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class Authentication {
+class Authentication: AuthenticationService {
     
     private let auth = Auth.auth()
     private let firestore: Firestore = Firestore.firestore()
     
-    public func createUser(user: User, completion: @escaping (Bool) -> Void ){
+    
+    // MARK: - CREATE USER
+    public func createUser(user: User, completion: @escaping (Result<Void, AuthError>) -> Void ){
     
         
-        auth.createUser(withEmail: user.email, password: user.password) { dataResult, error in
+        auth.createUser(withEmail: user.email, password: user.password) { [weak self] dataResult, error in
             
-            if let error = error {
-                // Erro ao criar conta de usuário
-                print("Erro ao criar conta: \(error.localizedDescription)")
-                completion(false)
+            guard let self = self else {return}
+            
+            if let error = error as NSError? {
+                // Mapeia o erro do firebase para o AuthError
+                let authError: AuthError
+                switch AuthErrorCode(rawValue: error.code) {
+                case .invalidEmail:
+                    authError = .custom(message: "Email Inválido.")
+                case .weakPassword:
+                    authError = .custom(message: "Senha fraca! Use pelo menos 6 caracteres!")
+                default:
+                    authError = .custom(message: error.localizedDescription)
+                }
+                DispatchQueue.main.async {
+                    completion(.failure(authError))
+                }
                 return
-            } else {
-                
-                guard let userId = dataResult?.user.uid else {
-                    // Erro ao recuperar ID do usuário
-                    print("Erro ao recuperar ID do usuário")
-                    completion(false)
-                    return
-                } // Fim do guard le userId
-                
-                self.firestore.collection("users")
-                    .document(userId)
-                    .setData([
-                        "nome": user.name,
-                        "email": user.email
-                    ])
-                
-            } // Fim do if/else de verificação de criação de usuário
+            }
+            
+            // Recupera ID do usuário
+            guard let userId = dataResult?.user.uid else {
+                DispatchQueue.main.async {
+                    completion(.failure(.custom(message: "Não foi possível recuperar ID do usuário.")))
+                }
+                return
+            }
+            
+            // Cria documento no Firestore
+            self.firestore.collection("users")
+                .document(userId)
+                .setData([
+                    "nome": user.name,
+                    "email": user.email
+                ]) {error in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            completion(.failure(.custom(message: error.localizedDescription)))
+                        } else {
+                            completion(.success(()))
+                        }
+                    }
+                }
             
         }
     }

@@ -8,7 +8,7 @@ import Foundation
 
 protocol AuthenticationService {
     
-    func createUser(name: String, email: String, password: String, completion: @escaping (Result<Void, AuthError>) -> Void)
+    func createUser(user: User, completion: @escaping (Result<Void, AuthError>) -> Void)
     
     func login(userEmail: String, userPassword: String, completion: @escaping (Result<Void, AuthError>) -> Void)
     
