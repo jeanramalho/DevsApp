@@ -8,12 +8,6 @@ import Foundation
 import UIKit
 import Combine
 
-enum LoginState {
-    case idle
-    case loading
-    case success
-    case failure(AuthError)
-}
 
 protocol LoginViewModelType {
     var isPasswordVisible: CurrentValueSubject<Bool, Never> {get}
