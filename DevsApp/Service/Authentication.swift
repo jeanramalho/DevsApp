@@ -66,6 +66,8 @@ class Authentication: AuthenticationService {
         }
     }
     
+    // MARK: - LOGIN
+    
     public func login(userEmail: String, userPassword: String, completion: @escaping (Result<Void, AuthError>) -> Void) {
         
         auth.signIn(withEmail: userEmail, password: userPassword) { result , error in
@@ -89,10 +91,13 @@ class Authentication: AuthenticationService {
                 return
             } // Fim do guard result.user
             
-            completion(.success(()))
+            DispatchQueue.main.async {
+                completion(.success(()))
+            }
         }
     } // Fim da função Login
     
+   // MARK: - CHECK LOGIN
     
     public func checkLogin(completion: @escaping (_ auth: Bool, _ userId: String?) -> Void){
         
