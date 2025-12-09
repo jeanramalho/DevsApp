@@ -108,7 +108,6 @@ class Authentication: AuthenticationService {
                 return
             } else {
                 completion(false, nil)
-                return
             } // Fim do if/else
             
         } // Fim do auth.addStateDidChangeListener
