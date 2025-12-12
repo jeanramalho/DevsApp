@@ -68,7 +68,15 @@ final class SignUpView: UIView {
         button.layer.cornerRadius = 6
         button.layer.borderWidth = 1
         button.layer.borderColor = Colors.bluePrimary.cgColor
+        button.setTitleColor(Colors.bluePrimary, for: .normal)
         return button
+    }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
     }()
     
     override init(frame: CGRect) {
