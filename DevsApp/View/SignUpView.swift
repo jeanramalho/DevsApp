@@ -9,6 +9,7 @@ import UIKit
 
 final class SignUpView: UIView {
     
+    // MARK: - Subviews
     private let headerView: HeaderView = {
         let headerView = HeaderView(title: "Cadastre-se")
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +42,7 @@ final class SignUpView: UIView {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Digite sua senha..."
+        textField.isSecureTextEntry = true
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 6
         textField.textColor = Colors.bluePrimary
@@ -51,6 +53,7 @@ final class SignUpView: UIView {
         let textField = PaddedTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Confirme sua senha..."
+        textField.isSecureTextEntry = true
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 6
         textField.textColor = Colors.bluePrimary
