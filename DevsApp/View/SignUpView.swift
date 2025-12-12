@@ -79,6 +79,11 @@ final class SignUpView: UIView {
         return indicator
     }()
     
+    // MARK: - Callbacks
+    public var onSignUpTap: (() -> Void)?
+    
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
