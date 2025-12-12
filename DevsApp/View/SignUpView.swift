@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class SignUpView: UIView {
+final class SignUpView: UIView {
     
     private let headerView: HeaderView = {
         let headerView = HeaderView(title: "Cadastre-se")
