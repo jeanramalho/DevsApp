@@ -161,4 +161,12 @@ final class SignUpView: UIView {
             
         ])
     }
+    
+    private func setupActions(){
+        signUpButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
+    }
+    
+    @objc private func signUpTapped(){
+        onSignUpTap?()
+    }
 }
