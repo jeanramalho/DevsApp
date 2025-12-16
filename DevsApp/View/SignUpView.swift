@@ -169,4 +169,21 @@ final class SignUpView: UIView {
     @objc private func signUpTapped(){
         onSignUpTap?()
     }
+    
+    // MARK: - Helpers public
+    public func getSignUpData() -> SignUpData? {
+        
+        guard
+            let name = nameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text,
+            let confirm = confirmPasswordTextField.text
+        else {return nil}
+        
+        var signUpData = SignUpData(name: name, email: email, password: password, confirmPassword: confirm)
+        
+        return signUpData
+        
+    }
+    
 }
