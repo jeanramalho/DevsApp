@@ -11,4 +11,5 @@ protocol SignUpViewModelType {
     
     var signUpState: CurrentValueSubject<SignUpState, Never> { get }
     func signUp(name: String, email: String, password: String, confirmPassword: String)
+
 }
