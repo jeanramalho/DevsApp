@@ -87,11 +87,14 @@ final class SignUpView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupActions()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - UI Setup
     
     private func setupUI(){
         
@@ -109,6 +112,8 @@ final class SignUpView: UIView {
         addSubview(passwordTextField)
         addSubview(confirmPasswordTextField)
         addSubview(signUpButton)
+        
+        signUpButton.addSubview(activityIndicator)
     }
     
     private func setConstraints(){
