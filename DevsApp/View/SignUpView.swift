@@ -153,7 +153,11 @@ final class SignUpView: UIView {
             signUpButton.heightAnchor.constraint(equalToConstant: 40),
             signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             signUpButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 30),
-            signUpButton.widthAnchor.constraint(equalToConstant: 300)
+            signUpButton.widthAnchor.constraint(equalToConstant: 300),
+            
+            // activity indicator
+            activityIndicator.centerXAnchor.constraint(equalTo: signUpButton.centerXAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: signUpButton.trailingAnchor, constant: -12)
             
         ])
     }
