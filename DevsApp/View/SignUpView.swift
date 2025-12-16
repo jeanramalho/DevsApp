@@ -125,33 +125,33 @@ final class SignUpView: UIView {
             headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
-            // Define altura dos elementos
+            // nameTextField
             nameTextField.heightAnchor.constraint(equalToConstant: 35),
-            emailTextField.heightAnchor.constraint(equalToConstant: 35),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 35),
-            confirmPasswordTextField.heightAnchor.constraint(equalToConstant: 35),
-            signUpButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            // Define alinhamento dos elementos
             nameTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            emailTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            passwordTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            confirmPasswordTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            // Define constraints dos elementos
-            nameTextField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 50),
             nameTextField.widthAnchor.constraint(equalToConstant: 300),
+            nameTextField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 50),
             
-            emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
+            // emailTextField
+            emailTextField.heightAnchor.constraint(equalToConstant: 35),
+            emailTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             emailTextField.widthAnchor.constraint(equalToConstant: 300),
+            emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
             
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
+            // passwordTextField
+            passwordTextField.heightAnchor.constraint(equalToConstant: 35),
+            passwordTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             passwordTextField.widthAnchor.constraint(equalToConstant: 300),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
             
-            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            // confirmPasswordTextField
+            confirmPasswordTextField.heightAnchor.constraint(equalToConstant: 35),
+            confirmPasswordTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             confirmPasswordTextField.widthAnchor.constraint(equalToConstant: 300),
+            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             
+            // signUpButton
+            signUpButton.heightAnchor.constraint(equalToConstant: 40),
+            signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             signUpButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 30),
             signUpButton.widthAnchor.constraint(equalToConstant: 300)
             
