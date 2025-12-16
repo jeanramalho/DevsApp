@@ -186,4 +186,19 @@ final class SignUpView: UIView {
         
     }
     
+    // Toggle loading UI (disabilita inputs e mostra o spinner)
+    public func setLoading(_ loading: Bool) {
+        signUpButton.isEnabled = !loading
+        nameTextField.isEnabled = !loading
+        emailTextField.isEnabled = !loading
+        passwordTextField.isEnabled = !loading
+        confirmPasswordTextField.isEnabled = !loading
+        
+        if loading {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+    
 }
