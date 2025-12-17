@@ -5,6 +5,7 @@
 //  Created by Jean Ramalho on 16/12/25.
 //
 import Foundation
+import Combine
 
 protocol LoginViewModelType {
     var isPasswordVisible: CurrentValueSubject<Bool, Never> {get}
