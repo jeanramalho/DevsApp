@@ -15,5 +15,13 @@ final class SignUpViewModel: SignUpViewModelType {
     // Estado do fluxo de sign up
     let signUpState = CurrentValueSubject<SignUpState, Never>(.idle)
     
+    // Dependencia para facilitar testes
+    private let authService: AuthenticationService
+    
+    init(authService: AuthenticationService = Authentication()) {
+        self.authService = authService
+    }
+    
+    // MARK: - SignUp
     
 }
