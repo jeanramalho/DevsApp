@@ -10,3 +10,10 @@ import Combine
 
 
 
+final class SignUpViewModel: SignUpViewModelType {
+    
+    // Estado do fluxo de sign up
+    let signUpState = CurrentValueSubject<SignUpState, Never>(.idle)
+    
+    
+}
