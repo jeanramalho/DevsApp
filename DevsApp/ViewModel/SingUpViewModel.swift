@@ -51,6 +51,25 @@ final class SignUpViewModel: SignUpViewModelType {
             return
         }
         
+        // Cria modelo de User
+        let newUser = User(name: trimmedName, email: trimmedEmail, password: trimmedPassword)
+        
+        
         // Se passar nas validações -> Solicita criação
+        signUpState.send(.loading)
+        
+        authService.createUser(user: newUser) { [weak self] result in
+            
+            guard let self = self else {return}
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    self.signUpState.send(.success)
+                case .failure(let error):
+                    self.signUpState.send(.failure(error))
+                }
+            }
+        }
     }
 }
