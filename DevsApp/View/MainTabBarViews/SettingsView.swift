@@ -22,7 +22,9 @@ class SettingsView: UIView {
     }()
     
     private let userNameLabel: UILabel = {
-        
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     override init(frame: CGRect) {
