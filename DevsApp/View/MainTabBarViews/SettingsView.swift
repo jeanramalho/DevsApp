@@ -15,6 +15,12 @@ class SettingsView: UIView {
         return headerView
     }()
     
+    private let perfilImageView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
