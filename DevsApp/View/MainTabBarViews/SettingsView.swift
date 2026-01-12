@@ -21,6 +21,10 @@ class SettingsView: UIView {
         return image
     }()
     
+    private let userNameLabel: UILabel = {
+        
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
